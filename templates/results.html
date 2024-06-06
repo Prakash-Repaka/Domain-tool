@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WHOIS Dashboard</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>WHOIS Dashboard</h1>
+    </div>
+    <div class="container">
+
+        <img src="https://logo.clearbit.com/{{ results.domain_name }}?size=200&format=png" alt="Domain Logo" id="domain-logo" class="domain-logo">
+        <div class="row">
+            <div class="box">
+                <div class="box-title">Domain Name</div>
+                <div class="info-item"><span id="domain-name">{{ results.domain_name }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">Registrar</div>
+                <div class="info-item"><span id="registrar"> {{ results.registrar }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">Creation Date</div>
+                <div class="info-item"><span id="creation-date"> {{ results.creation_date }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">Expiration Date</div>
+                <div class="info-item"><span id="expiration-date">{{ results.expiration_date }}</span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <div class="box-title">Name Servers</div>
+                <div class="info-item">
+                    <span id="name-servers">
+                        <ul class="name-servers-list">
+                            {% for name_server in results.name_servers %}
+                            <li class="box-in">{{ name_server }}</li>
+                            {% endfor %}
+                        </ul>
+                    </span>
+                </div>
+            </div>
+            
+            </div>
+            <div class="box">
+                <div class="box-title">Status</div>
+                <div class="info-item"><span id="status">
+
+                    <ul>
+                        {% for status in results.status %}
+                            <li class="box-int">{{ status }}</li>
+                        {% endfor %}
+                        </ul>
+                </span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box">
+                <div class="box-title">Emails</div>
+                <div class="info-item"><span id="emails">{{ results.emails }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">Organization</div>
+                <div class="info-item"><span id="organization">{{ results.org }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">State</div>
+                <div class="info-item"><span id="state">{{ results.state }}</span></div>
+            </div>
+            <div class="box">
+                <div class="box-title">Server Location Country</div>
+               
+                <img id="country-flag" class="country-flag" src="" alt="Country Flag">
+                <span id="country-name"></span>
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        function fetchCountryInfo(countryCode) {
+            fetch(`https://restcountries.com/v3/alpha/${countryCode}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch country info');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const countryName = data[0].name.common;
+                    const flagURL = data[0].flags[0];
+                    console.log(flagURL)
+                    document.getElementById('country-name').textContent = countryName;
+                    document.getElementById('country-flag').src = flagURL;
+                })
+                .catch(error => console.error('Error fetching country info:', error));
+        }
+
+        const countryCode = 'US'; // Set the country code manually for testing
+        fetchCountryInfo(countryCode);
+
+    </script>
+
+    <script src="../static/script.js"></script>
+  </body>
+</html>

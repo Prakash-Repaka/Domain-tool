@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Information Tool</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url("../static/background.jpg") no-repeat;
+            background-size: cover; /* Optional: Adjust background size as needed */
+   
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(57, 51, 51, 0.45);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 30px;
+            text-align: center;
+        }
+        
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1e1b1b;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.8;
+            color: #0d0c0c;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-label {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .form-input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            margin-right: 10px;
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .analyze-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            outline: none;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .analyze-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .logo-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            height: 170px; /* Adjust height as needed */
+            width: auto;
+        }
+        
+        .logo-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            height: 200px; /* Adjust height as needed */
+            width: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/kiet.png" alt="Left Logo" class="logo-left">
+    <img src="/static/cyber.png" alt="Right Logo" class="logo-right">
+    <div class="container">
+        <div class="header">
+            <h1>Website Information Tool</h1>
+            <p>Analyze any website's WHOIS data</p>
+            <p>The Website Information Tool is a web application designed to analyze WHOIS data of any given website. WHOIS data provides valuable insights into the registration and ownership details of a domain name. With this tool, users can input a website URL and retrieve relevant WHOIS information, empowering them to understand the background and ownership of websites they interact with. The tool offers a simple and intuitive interface, making it easy for users to access this essential information efficiently.</p>
+        </div>
+        <form action="/analyze" method="post">
+            <label for="website" class="form-label">Enter website URL:</label><br>
+            <div class="form-input">
+                <input type="text" id="website" name="website" class="input-field" placeholder="Example: example.com">
+                <button type="submit" class="analyze-btn">Analyze</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
